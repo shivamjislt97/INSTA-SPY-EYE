@@ -122,10 +122,20 @@ After completing all steps:
 
 1. Bot status should be "online" in PM2
 2. Telegram should receive "Bot Started!" notification
-3. Manual check should return "No DP Change detected" or "New DP detected"
-4. `dist/` folder should contain compiled JS files
-5. `prisma/dev.db` should exist
-6. `.lightning_studio/on_start.sh` should have auto-start commands
+3. Bot will auto-sleep after 10 minutes
+4. Telegram will receive "Bot going to sleep!" notification
+5. Manual check should return "No DP Change detected" or "New DP detected"
+6. `dist/` folder should contain compiled JS files
+7. `prisma/dev.db` should exist
+8. `.lightning_studio/on_start.sh` should have auto-start commands
+
+### AUTO-SLEEP FEATURE
+
+The bot automatically goes to sleep after 10 minutes:
+- Startup: Telegram receives "Bot Started!" notification
+- After 10 minutes: Telegram receives "Bot going to sleep!" notification
+- Bot stops automatically
+- To restart: Run `pm2 start dp-tracker` or restart studio
 
 ### TROUBLESHOOTING
 
