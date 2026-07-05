@@ -102,4 +102,24 @@ if (require.main === module) {
   sendTelegramMessage(startupMsg);
 
   runCheckCycle();
+
+  // Auto-sleep after 10 minutes
+  const SLEEP_AFTER_MS = 10 * 60 * 1000; // 10 minutes
+  console.log(`Bot will auto-sleep after 10 minutes...`);
+
+  setTimeout(async () => {
+    const sleepMsg = `Bot going to sleep!\n\nTracking: ${config.INSTAGRAM_USERNAME}\nTime: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
+    await sendTelegramMessage(sleepMsg);
+    console.log('Sleep signal sent. Stopping bot...');
+    
+    // Stop PM2 process
+    const { execSync } = require('child_process');
+    try {
+      execSync('pm2 stop dp-tracker');
+      console.log('Bot stopped successfully.');
+    } catch (error) {
+      console.error('Error stopping bot:', error);
+    }
+    process.exit(0);
+  }, SLEEP_AFTER_MS);
 }
