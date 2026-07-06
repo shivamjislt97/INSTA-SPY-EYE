@@ -101,7 +101,9 @@ if (require.main === module) {
   const startupMsg = `Bot Started!\n\nTracking: ${config.INSTAGRAM_USERNAME}\nTime: ${now.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
   sendTelegramMessage(startupMsg);
 
-  runCheckCycle();
+  runCheckCycle().then((checkResult) => {
+    sendTelegramMessage(`[Initial Check]\n${checkResult}`);
+  });
 
   // Auto-sleep after 10 minutes
   const SLEEP_AFTER_MS = 10 * 60 * 1000; // 10 minutes
