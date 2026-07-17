@@ -1,7 +1,44 @@
 #!/usr/bin/env python3
 """
 Instagram DP Monitor - Telegram Bot
+====================================
+
 Har ghante Instagram profile check karta hai aur change detect hone pe Telegram pe notify karta hai.
+
+WORKFLOW:
+    1. Instagram profile ka DP download karo
+    2. DP ka perceptual hash (pHash) nikalo
+    3. Pehle ke hash se compare karo
+    4. Agar alag hai = DP change ho gayi
+    5. Telegram pe photo aur message bhejo
+
+USAGE:
+    # Interactive menu
+    python instagram_monitor_bot.py
+
+    # Single check (for cron/scheduling)
+    python instagram_monitor_bot.py --once
+
+    # Continuous monitoring
+    python instagram_monitor_bot.py --monitor
+
+    # Monitor specific profiles
+    python instagram_monitor_bot.py --monitor taniii_ni cristiano
+
+COMMANDS:
+    Option 1: Add profile to monitor
+    Option 2: Remove profile
+    Option 3: List monitored profiles
+    Option 4: Check all profiles now
+    Option 5: Set Telegram config
+    Option 6: Start auto monitoring
+    Option 7: Exit
+
+CRON SCHEDULE (har ghante):
+    0 * * * * cd /path/to/INSTA-SPY-EYE && python instagram_monitor_bot.py --once
+
+REQUIREMENTS:
+    pip install requests Pillow imagehash
 """
 
 import re
@@ -24,9 +61,14 @@ except ImportError:
     print("Warning: imagehash/Pillow not installed. DP comparison using MD5 hash.")
 
 # ============== CONFIG ==============
-BOT_TOKEN = "8980206929:AAF_t_akPdu09o0F5xcyF8K9zAKR8JYUAdU"  # Yaha apna bot token dalo
-CHAT_ID = "6267031612"    # Yaha apna chat ID dalo
-CHECK_INTERVAL = 3600  # 1 hour in seconds
+# Telegram Bot Setup:
+# 1. @BotFather ko Telegram pe /newbot bhejo
+# 2. Bot token lo
+# 3. Apne bot ko /start bhejo
+# 4. https://api.telegram.org/bot<TOKEN>/getUpdates se Chat ID nikalo
+BOT_TOKEN = "8980206929:AAF_t_akPdu09o0F5xcyF8K9zAKR8JYUAdU"  # Telegram bot token
+CHAT_ID = "6267031612"    # Telegram chat ID
+CHECK_INTERVAL = 3600  # 1 hour in seconds (3600 = 1 hour, 1800 = 30 min)
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instagram_monitor_data.json")
 
 # Browser headers
