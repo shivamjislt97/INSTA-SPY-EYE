@@ -164,7 +164,7 @@ Aap: spy_eye_never_blink_bot
 ### Step 3: Bot Token lo
 ```
 BotFather: Bot ban gaya! Ye hai token:
-8980206929:AAF_t_akPdu09o0F5xcyF8K9zAKR8JYUAdU
+1234567890:ABCdefGHIjklMNOpqrsTUVwxyz
 
 ⚠️ Ye token kisi ko mat do!
 ```
@@ -177,8 +177,8 @@ BotFather: Bot ban gaya! Ye hai token:
 ### Step 5: Bot mein set karo
 ```python
 # instagram_monitor_bot.py mein:
-BOT_TOKEN = "8980206929:AAF_t_akPdu09o0F5xcyF8K9zAKR8JYUAdU"
-CHAT_ID = "6267031612"
+BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
+CHAT_ID = "YOUR_CHAT_ID_HERE"
 ```
 
 ---

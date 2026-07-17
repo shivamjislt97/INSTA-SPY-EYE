@@ -66,8 +66,8 @@ except ImportError:
 # 2. Bot token lo
 # 3. Apne bot ko /start bhejo
 # 4. https://api.telegram.org/bot<TOKEN>/getUpdates se Chat ID nikalo
-BOT_TOKEN = "8980206929:AAF_t_akPdu09o0F5xcyF8K9zAKR8JYUAdU"  # Telegram bot token
-CHAT_ID = "6267031612"    # Telegram chat ID
+BOT_TOKEN = ""  # Apna Telegram bot token yaha dalo (BotFather se milega)
+CHAT_ID = ""    # Apna Chat ID yaha dalo (getUpdates se milega)
 CHECK_INTERVAL = 3600  # 1 hour in seconds (3600 = 1 hour, 1800 = 30 min)
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instagram_monitor_data.json")
 
